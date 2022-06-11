@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: users
+    description: Contains anagrafic and contact information about users.
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+  
+  - name: addresses
+    description: Contains physical addresses of customers.
+    columns:
+      - name: address_id
+        tests:
+          - not_null
+          - unique
+
+  - name: events
+    description: browsing events.
+    columns: 
+      - name: event_id
+        tests: 
+        - not_null
+        - unique
+
+  - name: order_items
+    description: stuff about the items that were purchased
+    columns: 
+      - name: order_id
+        tests:
+        - not_null
+        - unique
+      - name: quantity
+        tests: 
+        - positive_values
+
+  - name: orders
+    description: the actual orders
+  
+  - name: products
+    description: product catalog
+    columns: 
+      - name: product_id
+        tests: 
+        - not_null
+        - unique
+      - name: name
+        tests: 
+        - not_null
+        - unique
+      - name: price
+        tests:
+         - positive_values 
+
+
+  
+  - name: promos
+    description: promotions applied to the orders
+

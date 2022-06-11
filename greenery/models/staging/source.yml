@@ -1,0 +1,95 @@
+version: 2
+
+sources:
+
+  - name: users # name of the source (this can be named whatever you want, but should be descriptive. this source (superheroes) is used for our week 1 tutorial so thats why i named it this way)
+    schema: public # this is the schema our raw data lives in
+    database: dbt # this is the name of our database
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: users 
+        description: >
+          Contains anagrafic and contact information about users.
+
+  - name: addresses
+    schema: public
+    database: dbt
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: addresses
+        description: > 
+          Contains physical addresses of customers.
+
+  - name: events
+    schema: public
+    database: dbt
+    quoting:  
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: events
+        description: >
+          Contains information about browsing and shopping events of users.
+  
+  - name: order_items
+    schema: public
+    database: dbt
+    quoting:  
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: order_items
+        description: >
+          Contains information about the items in the orders (e.g. the id of the products purchased and the quantity).
+
+  - name: orders
+    schema: public
+    database: dbt
+    quoting:  
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: orders
+        description: >
+          Contains information about the orders.
+
+  - name: products
+    schema: public
+    database: dbt
+    quoting:  
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: products
+        description: >
+          Product catalog.
+
+  - name: promos
+    schema: public
+    database: dbt
+    quoting:  
+      database: false
+      schema: false
+      identifier: false
+
+    tables:
+      - name: promos
+        description: >
+          Contains information and status about the promotions applied to purchase orders.
+  

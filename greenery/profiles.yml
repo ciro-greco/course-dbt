@@ -1,0 +1,12 @@
+greenery:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: gitpod
+      password: gitpod
+      port: 5432
+      database: dbt
+      schema: dbt_ciro_g
+      threads: 4
