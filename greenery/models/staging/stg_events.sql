@@ -8,4 +8,4 @@ SELECT
     order_id,
     product_id
 
-FROM {{ source('events', 'events') }}
+FROM {{ source('greenery', 'events') }}

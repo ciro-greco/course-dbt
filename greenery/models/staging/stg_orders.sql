@@ -1,5 +1,5 @@
 SELECT
-    order_id, 
+    order_id,
     user_id,
     promo_id,
     address_id,
@@ -12,4 +12,4 @@ SELECT
     estimated_delivery_at,
     delivered_at,
     status
-FROM {{ source('orders', 'orders') }}
+FROM {{ source('greenery', 'orders') }}

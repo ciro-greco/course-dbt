@@ -4,4 +4,4 @@ SELECT
     price,
     inventory
     
-FROM {{ source('products', 'products') }}
+FROM {{ source('greenery', 'products') }}

@@ -5,4 +5,4 @@
 }}
 
 SELECT Count(*) as total_users
-FROM {{ref('users')}}
+FROM {{ref('unique_users')}}

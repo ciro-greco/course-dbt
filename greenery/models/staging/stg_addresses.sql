@@ -5,4 +5,4 @@ SELECT
     state,
     country
 
-FROM {{ source('addresses', 'addresses') }}
+FROM {{ source('greenery', 'addresses') }}

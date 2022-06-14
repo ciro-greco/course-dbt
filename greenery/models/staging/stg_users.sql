@@ -10,4 +10,4 @@ SELECT
     updated_at,
     address_id
     
-FROM {{ source('users', 'users') }}
+FROM {{ source('greenery', 'users') }}

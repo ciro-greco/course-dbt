@@ -3,4 +3,4 @@ SELECT
     discount,
     status
     
-FROM {{ source('promos', 'promos') }}
+FROM {{ source('greenery', 'promos') }}

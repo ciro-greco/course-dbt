@@ -7,4 +7,4 @@
 SELECT DISTINCT
     user_id
     
-FROM {{ source('users', 'users') }}
+FROM {{ source('greenery', 'users') }}

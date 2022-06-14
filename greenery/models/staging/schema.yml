@@ -1,15 +1,29 @@
 version: 2
 
 models:
-  - name: users
-    description: Contains anagrafic and contact information about users.
+  - name: stg_users
+    description: Contains anagrafic and contact information about users. Columns are all pretty explicit.
     columns:
       - name: user_id
         tests:
           - not_null
           - unique
+      - name: first_name
+        description: first name of the user
+      - name: last_name
+        description: last name of the user
+      - name: email
+        description: email of the user
+      - name: phone_number
+        description: phone number of the user
+      - name: created_at
+        description: timestamp the user was created in UTC
+      - name: updated_at
+        description: timestamp the user was last updated in UTC
+      - name: address_id
+        description: default delivery address for the user
   
-  - name: addresses
+  - name: stg_addresses
     description: Contains physical addresses of customers.
     columns:
       - name: address_id
@@ -17,15 +31,30 @@ models:
           - not_null
           - unique
 
-  - name: events
+  - name: stg_events
     description: browsing events.
-    columns: 
+    columns:
       - name: event_id
+        description: UUID of each unique event on the platform
         tests: 
         - not_null
         - unique
-
-  - name: order_items
+      - name: session_id
+        description: UUID of each browsing session on the platform which can contain many events
+      - name: user_id
+        description: UUID of the user that this event is associated with
+      - name: page_url
+        description: URL that the event happened on
+      - name: created_at
+        description: Timestamp of the event in UTC
+      - name: event_type
+        description: Type of event          
+      - name: order_id
+        description: If the event is specific to an order (mostly used for checkout)
+      - name: product_id
+        description: If the event is refers to a product
+        
+  - name: stg_order_items
     description: stuff about the items that were purchased
     columns: 
       - name: order_id
@@ -33,13 +62,57 @@ models:
         - not_null
         - unique
       - name: quantity
+        description: number of items bundled in on order
         tests: 
         - positive_values
 
-  - name: orders
+  - name: stg_orders
     description: the actual orders
+    columns:
+      - name: order_id
+        description: UUID for each unique order on platform
+        tests:
+        - not_null
+        - unique
+      - name: user_id
+        description: UserId of the user that placed this order
+        tests:
+        - not_null
+      - name: promo_id
+        description: PromoId if any was used in the order   
+      - name: address_id
+        description: Delivery address for this order
+      - name: created_at
+        description: Timestamp when the order was created in UTC
+      - name: order_cost
+        description: Dollar about of the items in the order
+        tests:
+        - positive_values
+      - name: shipping_cost
+        description: Cost of shipping for the order
+      - name: order_total
+        description: Total cost of the order including shipping
+        tests:
+        - positive_values
+      - name: tracking_id
+        description: Tracking number for the order/package
+        tests:
+        - not_null
+        - unique
+      - name: shipping_service
+        description: Company that was used for shipping   
+      - name: estimated_delivery_at
+        description: Estimated date of delivery in UTC   
+      - name: delivered_at
+        description: Actual timestamp of delivery in UTC
+      - name: order_status
+        description: Status of the order
+    
+    
+
+
   
-  - name: products
+  - name: stg_products
     description: product catalog
     columns: 
       - name: product_id
@@ -47,15 +120,24 @@ models:
         - not_null
         - unique
       - name: name
+        description: of the product as it is listed.
+      - name: price
+        description: WARNING - currency is not specificed. 
+        tests:
+         - positive_values 
+      - name: inventory
+        description: how many items are avaialable to purchase.
+      - name: name
+
+
+  - name: stg_promos
+    description: promotions applied to the orders
+    columns: 
+      - name: promo_id
         tests: 
         - not_null
         - unique
-      - name: price
-        tests:
-         - positive_values 
-
-
-  
-  - name: promos
-    description: promotions applied to the orders
-
+      - name: discount
+        description: amount of discount
+      - name: status
+        description: whether the promotion is active or inactive 
